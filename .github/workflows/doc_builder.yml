@@ -32,9 +32,7 @@ jobs:
         git pull origin master
         cd ./docs
         sphinx-apidoc -f -o . ..
-        make clean
-        make html
-        cp -a ./_build/html/ .
+        make github
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@3.5.9
