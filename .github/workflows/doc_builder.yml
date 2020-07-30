@@ -31,12 +31,16 @@ jobs:
       run: |
         cd ./docs
         sphinx-apidoc -o . ..
-        make html
+        make github
 
-    - name: push
-        uses: github-actions-x/commit@v2.6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: master
-          commit-message: 'New doc!'
-          rebase: 'true' # pull abd rebase before commit
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Doc updated" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: develop
