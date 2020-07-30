@@ -22,6 +22,7 @@ jobs:
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
+        ref: gh-pages
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
@@ -29,13 +30,13 @@ jobs:
         pip install sphinx sphinx_rtd_theme recommonmark
     - name: Build doc
       run: |
+        git pull origin master
         cd ./docs
         sphinx-apidoc -o . ..
         make github
 
     - name: Commit files
       run: |
-        git checkout gh-pages
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .
