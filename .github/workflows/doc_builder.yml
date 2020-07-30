@@ -37,6 +37,7 @@ jobs:
 
     - name: Commit files
       run: |
+        git pull
         git fetch
         git merge master
         git config --local user.email "action@github.com"
