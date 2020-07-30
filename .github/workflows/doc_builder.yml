@@ -31,9 +31,10 @@ jobs:
       run: |
         git pull origin master
         cd ./docs
-        rm *.html
         sphinx-apidoc -o . ..
-        make github
+        make clean
+        make html
+        cp -a ./_build/html/ .
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@3.5.9
