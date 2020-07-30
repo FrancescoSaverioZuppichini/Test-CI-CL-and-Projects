@@ -32,6 +32,7 @@ jobs:
         git pull origin master
         cd ./docs
         sphinx-apidoc -f -o . ..
+        rm *.html
         make clean
         make html
         cp -a ./_build/html/ .
