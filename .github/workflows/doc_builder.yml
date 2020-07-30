@@ -32,7 +32,6 @@ jobs:
         git pull origin master
         cd ./docs
         sphinx-apidoc -f -o . ..
-        make clean
         make github
 
     - name: Deploy 🚀
